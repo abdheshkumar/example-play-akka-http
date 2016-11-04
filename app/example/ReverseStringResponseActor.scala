@@ -20,7 +20,7 @@ class ReverseStringResponseActor(implicit timeout: Timeout) extends Actor {
   def receive = {
     case Input(input) =>
       val result = reverseStringActor.ask(ToReverseString(input))
-        .mapTo[ReversedString]
+        .mapTo[List[String]]
       pipe(result) to sender()
   }
 }
@@ -46,7 +46,7 @@ trait ReverseRepository {
 
   def reverseString(inputString: String) = {
     reverseActor.ask(Input(inputString))
-      .mapTo[ReversedString]
+      .mapTo[List[String]]
   }
 }
 

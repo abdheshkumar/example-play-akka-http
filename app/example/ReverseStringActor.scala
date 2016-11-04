@@ -13,7 +13,7 @@ class ReverseStringActor extends Actor {
     case ToReverseString(inputString) =>
       val re = inputString.reverse
       result = result + re
-      sender() ! ReversedString(result)
+      sender() ! result.toList
   }
 }
 
